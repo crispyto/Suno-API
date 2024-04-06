@@ -58,7 +58,6 @@ class Client:
         self._sid = None
 
     def request(self, *args, **kwargs) -> requests.Response:
-        kwargs["impersonate"] = kwargs.get("impersonate", "chrome")
         return self._session.request(*args, **kwargs)
 
     def sleep(self, seconds: Optional[float] = None) -> None:
