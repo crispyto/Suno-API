@@ -185,7 +185,7 @@ class Songs(APIResource):
         ids = [song.get("id") for song in songs]
         for id in ids:
             print(f"{id}")
-        return ids
+        return [self._get(id) for id in ids]
 
     def _get(self, id: str) -> Song:
         song = self._client.get_song(id)
