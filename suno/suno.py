@@ -184,16 +184,8 @@ class Songs(APIResource):
         songs = data.get("clips")
         ids = [song.get("id") for song in songs]
         start = time.time()
-        while True:
-            if time.time() - start > timeout:
-                raise Exception("failed to generate songs: TIMEOUT")
-            if sum([self._is_ready(id) for id in ids]) == len(ids):
-                print("")
-                break
-            else:
-                print(".", end="", flush=True)
         for id in ids:
-            print(f"song link: https://app.suno.ai/song/{id}")
+            print(f"{id}")
         return [self._get(id) for id in ids]
 
     def _get(self, id: str) -> Song:
